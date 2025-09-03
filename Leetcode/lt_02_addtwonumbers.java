@@ -1,41 +1,13 @@
-// Definition for singly-linked list.
+// LeetCode 會提供這個定義；若在本地測試請保留。
 class ListNode {
     int val;
     ListNode next;
     ListNode() {}
     ListNode(int val) { this.val = val; }
     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-
-    // === added for the judge's custom testcase ===
-    // "[2,4,3]" -> 2->4->3
-    static ListNode deserialize(String s) {
-        if (s == null) return null;
-        s = s.trim();
-        if (s.equals("[]")) return null;
-        if (s.startsWith("[")) s = s.substring(1);
-        if (s.endsWith("]")) s = s.substring(0, s.length()-1);
-        String[] parts = s.split(",");
-        ListNode dummy = new ListNode(0), cur = dummy;
-        for (String p : parts) {
-            p = p.trim();
-            if (p.isEmpty()) continue;
-            cur.next = new ListNode(Integer.parseInt(p));
-            cur = cur.next;
-        }
-        return dummy.next;
-    }
-    // optional: list -> "[2,4,3]" (便於你在本地印出檢查)
-    static String serialize(ListNode head) {
-        StringBuilder sb = new StringBuilder("[");
-        for (ListNode c = head; c != null; c = c.next) {
-            if (c != head) sb.append(',');
-            sb.append(c.val);
-        }
-        return sb.append(']').toString();
-    }
 }
 
-class Solution {
+class L02_AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0), cur = dummy;
         int carry = 0;
@@ -53,3 +25,10 @@ class Solution {
     }
 }
 
+/*
+解題思路：
+- 兩串列倒序儲存十進位個位到高位，模擬直式加法。
+- while 條件同時考慮 l1、l2、carry；每次建立新節點放 (sum % 10)。
+- 最後若有進位，補一節點。
+- 時間 O(max(m,n))，空間 O(1)（不含輸出鏈結串列）。
+*/
