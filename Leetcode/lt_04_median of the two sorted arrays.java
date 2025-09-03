@@ -33,3 +33,10 @@ class Solution {
         throw new IllegalArgumentException();
     }
 }
+/*
+解題思路：
+- 在較短陣列 A 上二分切點 i，令 j 使左半總長 = (m+n+1)/2。
+- 目標滿足：A[i-1] <= B[j] 且 B[j-1] <= A[i]。
+- 依比較調整 i 範圍；找到後根據奇偶回傳中位數。
+- 時間 O(log min(m,n))，空間 O(1)。
+*/
