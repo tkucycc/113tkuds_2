@@ -20,3 +20,9 @@ class Solution {
         return ans.toString();
     }
 }
+/*
+解題思路：
+- 模擬「之字形」走位：row 在 0..numRows-1 間來回。
+- 每個 row 用一個 StringBuilder 累積字元，最後串接。
+- 時間 O(n)，空間 O(n)。
+*/
